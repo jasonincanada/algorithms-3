@@ -1,0 +1,12 @@
+job-scheduling/.vscode/*
+job-scheduling/bin/*
+job-scheduling/obj/*
+
+minimum-spanning-trees/.vscode/*
+minimum-spanning-trees/bin/*
+minimum-spanning-trees/obj/*
+
+*.cache
+*.dll
+*.exe
+*.pdb
