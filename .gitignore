@@ -6,6 +6,10 @@ minimum-spanning-trees/.vscode/*
 minimum-spanning-trees/bin/*
 minimum-spanning-trees/obj/*
 
+clustering/.vscode/*
+clustering/bin/*
+clustering/obj/*
+
 *.cache
 *.dll
 *.exe
