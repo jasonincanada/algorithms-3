@@ -13,7 +13,7 @@ namespace jrh.Algorithms.Clustering
         }
 
         public long SpacingForKClusters(int target)
-        {            
+        {
             var edges = _graph.EnumerableEdges();
             var sorted = edges.OrderBy(x => x.Weight).ToList();
 
@@ -58,13 +58,10 @@ namespace jrh.Algorithms.Clustering
         // Naively merge clusters by reassigning leaders
         public void MergeClusters(Graph<T>.Vertex source, Graph<T>.Vertex target)
         {
-            var sourceLeader = source.Leader;
-            var targetLeader = target.Leader;
-
             var cluster = _graph.VerticesByLeader(source.Leader);
 
             foreach (var vertex in cluster)
-                vertex.SetLeader(targetLeader);
+                vertex.SetLeader(target.Leader);
         }
 
         // Two vertices are separated iff they belong to distinct clusters
