@@ -10,6 +10,14 @@ clustering/.vscode/*
 clustering/bin/*
 clustering/obj/*
 
+huffman/.vscode/*
+huffman/bin/*
+huffman/obj/*
+
+mwis/.vscode/*
+mwis/bin/*
+mwis/obj/*
+
 *.cache
 *.dll
 *.exe
