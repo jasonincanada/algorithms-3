@@ -30,20 +30,14 @@ buildTree :: [Tree] -> Tree
 buildTree (l:r:[])   = merge l r
 buildTree (l:r:rest) = buildTree $ sortBy (comparing weight) (merge l r : rest)
 
--- Find the maximum depth of a tree
-depth :: Tree -> Int
-depth (Leaf _)       = 0
-depth (Branch l _ r) = max (depth l + 1) (depth r + 1)
-
--- Find the minimum depth of a tree
-mepth :: Tree -> Int
-mepth (Leaf _)       = 0
-mepth (Branch l _ r) = min (mepth l + 1) (mepth r + 1)
+measure :: Tree -> (Int -> Int -> Int) -> Int
+measure (Leaf _)       _ = 0
+measure (Branch l _ r) f = f (measure l f + 1) (measure r f + 1)
 
 main :: IO ()
 main = do
   file <- readFile "huffman.txt"
   let probs = map read (tail $ lines file) :: [Integer]
   let tree  = buildTree $ map Leaf probs
-  print $ (mepth tree, depth tree)
+  print $ (measure tree min, measure tree max)
 
