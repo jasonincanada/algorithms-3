@@ -60,9 +60,9 @@ namespace jrh.Algorithms.MaxWeightIndependentSet
             // Base case
             graph[0].SetCummulativeWeight(graph[0].Weight);
 
-            for (var i = 1; i < graph.Count; i++)
+            for (var i = 0; i < graph.Count; i++)
             {
-                long oneAgo = graph[i - 1].CummulativeWeight;
+                long oneAgo = i < 1 ? 0 : graph[i - 1].CummulativeWeight;
                 long twoAgo = i < 2 ? 0 : graph[i - 2].CummulativeWeight;
                 long thisWeight = graph[i].Weight;
 
