@@ -25,10 +25,14 @@ merge l r = Branch l (weight l + weight r) r
 
 -- This is somewhat inefficient since it is sorting the list anew in each
 -- iteration. Better would be a min-heap or similar structure, but for
--- this data set, this will suffice.  This assumes an even-length tree.
+-- this data set, this will suffice.  This assumes at least 2 leaves.
 buildTree :: [Tree] -> Tree
-buildTree (l:r:[])   = merge l r
-buildTree (l:r:rest) = buildTree $ sortBy (comparing weight) (merge l r : rest)
+buildTree leaves = go $ sort leaves
+  where go (l:r:[])   = merge l r
+        go (l:r:rest) = go $ sort (merge l r : rest)
+
+        sort :: [Tree] -> [Tree]
+        sort = sortBy (comparing weight)
 
 measure :: Tree -> (Int -> Int -> Int) -> Int
 measure (Leaf _)       _ = 0
