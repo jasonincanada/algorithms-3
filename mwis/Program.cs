@@ -25,7 +25,7 @@ namespace jrh.Algorithms.MaxWeightIndependentSet
         // for the path graph it belongs to
         public bool Included { get; private set; }
 
-        public VertexWithStuff(int index, long weight)
+        public VertexWithStuff(long weight)
         {
             Weight = weight;
             Included = false;
@@ -52,14 +52,10 @@ namespace jrh.Algorithms.MaxWeightIndependentSet
         static void Main(string[] args)
         {
             IEnumerable<long> weights = LongsFromFile("mwis.txt");
-            IList<VertexWithStuff> graph = new List<VertexWithStuff>();
 
-            int index = 0;            
-            foreach (var weight in weights)
-            {
-                graph.Add(new VertexWithStuff(index, weight));
-                index++;
-            }
+            IList<VertexWithStuff> graph = weights
+                .Select(w => new VertexWithStuff(w))
+                .ToList();
 
             // Base case
             graph[0].SetCummulativeWeight(graph[0].Weight);
