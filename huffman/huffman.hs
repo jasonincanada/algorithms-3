@@ -25,14 +25,10 @@ merge l r = Branch l (weight l + weight r) r
 
 -- This is somewhat inefficient since it is sorting the list anew in each
 -- iteration. Better would be a min-heap or similar structure, but for
--- this data set, this will suffice
+-- this data set, this will suffice.  This assumes an even-length tree.
 buildTree :: [Tree] -> Tree
-buildTree leaves = go $ sort leaves
-  where go (l:r:[])   = merge l r
-        go (l:r:rest) = go $ sort $ merge l r : rest
-
-        sort :: [Tree] -> [Tree]
-        sort = sortBy (comparing weight)
+buildTree (l:r:[])   = merge l r
+buildTree (l:r:rest) = buildTree $ sortBy (comparing weight) (merge l r : rest)
 
 -- Find the maximum depth of a tree
 depth :: Tree -> Int
