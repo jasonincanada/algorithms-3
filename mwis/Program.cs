@@ -71,7 +71,7 @@ namespace jrh.Algorithms.MaxWeightIndependentSet
                 graph[i].SetCummulativeWeight(maxWeight);
             }
 
-            // Second pass to identify the vertices in the WMIS
+            // Second pass to identify the vertices in the MWIS
             int idx = graph.Count - 1;
             while (idx >= 0)
             {
